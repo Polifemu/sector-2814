@@ -1,0 +1,49 @@
+# Example llama-swap configuration for the Corps swarm.
+# Verify flags against your llama.cpp build and llama-swap version.
+#
+# Tiers:
+#   ttl: 0    -> always warm
+#   ttl: N    -> unloaded after N seconds idle
+# The Guardian is served by a TensorRT-LLM container and reached as a proxy.
+
+healthCheckTimeout: 180
+logLevel: info
+
+macros:
+  llama_server: >
+    llama-server
+    --host 127.0.0.1
+    --port ${PORT}
+    --flash-attn on
+    --n-gpu-layers 999
+    --ctx-size 16384
+    --parallel 4
+    --cache-type-k q8_0
+    --cache-type-v q8_0
+    --api-key ${env.LANTERN_RING_KEY}
+
+models:
+  # --- warm tier ---------------------------------------------------------
+  lantern-triage:
+    cmd: ${llama_server} --model ${MODELS}/qwen3-4b-instruct-q4_k_m.gguf --alias lantern-triage
+    ttl: 0
+    aliases: [triage]
+
+  lantern-memory:
+    cmd: ${llama_server} --model ${MODELS}/nomic-embed-text.gguf --embeddings --alias lantern-memory
+    ttl: 0
+
+  lantern-shield:
+    cmd: ${llama_server} --model ${MODELS}/prompt-guard-2.gguf --alias lantern-shield
+    ttl: 0
+
+  # --- cold tier ---------------------------------------------------------
+  lantern-verifier:
+    # deliberately a different family from the analyst models (Qwen)
+    cmd: ${llama_server} --model ${MODELS}/gemma3-12b-it-qat-q4.gguf --alias lantern-verifier
+    ttl: 300
+
+  lantern-guardian:
+    # alias to the TensorRT-LLM container endpoint
+    proxy: http://127.0.0.1:8355
+    ttl: 600

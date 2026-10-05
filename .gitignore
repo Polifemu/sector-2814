@@ -1,0 +1,33 @@
+# models and weights are never committed
+models/
+*.gguf
+*.safetensors
+*.bin
+trt-engines/
+
+# local runtime state
+vault/
+findings.db
+*.sqlite
+*.sqlite3
+*.log
+
+# secrets
+.env
+.env.*
+*.key
+*.pem
+.secrets
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# node
+node_modules/
+
+# builds
+build/
+dist/

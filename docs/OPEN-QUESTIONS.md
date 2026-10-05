@@ -22,6 +22,10 @@ Scanned content (file names, logs, file contents) reaches LLM triage. Our defens
 
 Quarantine requires human confirmation. Before writing Phase 4, is there a better pattern from real SOC workflows we should adopt (severity + confidence split, staging areas, canary files, time-based quarantine)?
 
-## 6. Everything else
+## 6. Corps link: trust and abuse model
+
+We want opt-in mutual aid between pinned nodes (2-10 machines): signed distress beacons, audit-log witnesses, and intel proposals — never remote actions. What breaks? How would you design peer pairing, replay protection and eviction for a small trusted mesh? What should never cross the wire?
+
+## 7. Everything else
 
 If you only have fifteen minutes: read [ARCHITECTURE.md](ARCHITECTURE.md) and tell us which assumption breaks first.

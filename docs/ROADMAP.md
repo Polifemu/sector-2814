@@ -50,3 +50,13 @@ Stretch: put a prompt-injection shield model in the ingest path from day one.
 - [ ] Prompt-injection shield integrated end to end
 - [ ] Book of Oa hash-watched by the Corps itself
 - [ ] Optional: LoRA specialization trained on labeled findings from the Central Battery
+
+## Phase 6 — Corps link (mutual aid)
+
+- [ ] Peer identity: Ed25519 keypair per node + pairing ceremony (fingerprint pinning)
+- [ ] Signed transport to pinned peers only (replay-protected, rate-limited)
+- [ ] Witness: audit checkpoints exchanged and stored by peers
+- [ ] Distress beacon: signed incident bundle (hashes and indicators, never contents)
+- [ ] Intel proposals queue with local human approval
+- [ ] Optional borrowed verification: opt-in, minimized and redacted bundles
+- [ ] Book of Oa: explicit egress exception and peer list

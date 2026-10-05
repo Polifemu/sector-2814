@@ -133,6 +133,27 @@ To widen visibility without widening power, the design adds a privileged read-on
 
 Hard limitation, stated honestly: a kernel-level rootkit owns the machine and no user-level tool can win that fight. The answer there is offline verification (live media, an external AIDE database), not self-defense. That is out of scope for the patrol.
 
+## Corps link: mutual aid (future, opt-in)
+
+Nodes running Sector 2814 on different machines can form a small trusted mesh. The invariant that never changes: **peers exchange intelligence and witnessing, never commands or code.**
+
+Primitives, in order of implementation:
+
+1. **Witness.** Each node periodically sends signed checkpoints (hash chain) of its audit log to peers. If a compromised node rewrites its history, the peers can prove it. Read-only, low risk, high value.
+2. **Distress beacon.** On a black finding a node sends a signed incident bundle to peers: severity, finding hashes, indicators (file hashes, process names, connection tuples) — never file contents. Peers check their own logs for the same indicators and reply with corroboration or silence.
+3. **Intel proposals.** Peers may propose detection patterns and response measures. Proposals are data, never code: they queue locally and require local human approval before becoming rules or actions; execution always happens locally.
+4. **Borrowed verification (optional, last).** If an attacked node is overloaded, a peer may run Kilowog verification on a minimized, redacted evidence bundle. This is the only case where data leaves the host, it is opt-in per finding, and the local policy must allow it.
+
+Hard rules:
+
+- Explicit pairing only: every peer is pinned by public-key fingerprint in the Book of Oa. No discovery, no broadcast.
+- Every message is signed (Ed25519), timestamped, rate-limited; replays rejected.
+- No remote action: the Ring exposes no remote mutation. A peer can never quarantine, kill or push code to another node.
+- Remote content is untrusted input: it passes the same validation and shield path as scanned local content.
+- Egress exception: this is the only allowed egress, only to pinned peers, only when the owner opts in, and the Book of Oa must say so explicitly.
+
+Threat-model additions: malicious or compromised peer, Sybil, beacon spoofing, replay, traffic analysis. Eviction = remove the fingerprint from the book and raise a black finding.
+
 ## Failure modes
 
 | Failure | Behavior |

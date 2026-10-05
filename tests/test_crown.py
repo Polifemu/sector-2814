@@ -86,6 +86,29 @@ class RingTest(unittest.TestCase):
     def test_unknown_tool(self):
         self.assertIn("error", build_default_ring().run("nope", {}))
 
+    def test_scan_file_without_engine_still_hashes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "x"
+            path.write_text("data")
+            out = build_default_ring().run("scan_file", {"path": str(path)})
+            self.assertEqual(out["size"], 4)
+            self.assertIn("status", out)
+
+    def test_search_secrets_finds_and_masks(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "creds.txt"
+            path.write_text("aws_key = AKIAIOSFODNN7EXAMPLE\n")
+            out = build_default_ring().run("search_secrets", {"path": tmp})
+            self.assertEqual(len(out["matches"]), 1)
+            match = out["matches"][0]
+            self.assertEqual(match["pattern"], "aws-access-key")
+            self.assertTrue(match["preview"].startswith("AKIA"))
+            self.assertNotIn("AKIAIOSFODNN7EXAMPLE", match["preview"])
+
+    def test_list_units_returns_data_or_error(self):
+        out = build_default_ring().run("list_units", {})
+        self.assertTrue("units" in out or "error" in out)
+
 
 class GuardianTest(unittest.TestCase):
     def test_patrol_end_to_end(self):

@@ -17,7 +17,7 @@ Stretch: put a prompt-injection shield model in the ingest path from day one.
 - [x] Policy engine (Book of Oa parser) + structured audit log
 - [x] Central Battery schema (SQLite) and finding model
 - [x] Tool schemas: `hash_file`, `list_connections`, `check_perms` (v0)
-- [ ] Remaining tools: `scan_file`, `search_secrets`, `list_units`
+- [x] Remaining tools: `scan_file`, `search_secrets`, `list_units`
 - [ ] Install the deterministic arsenal (antivirus, YARA, file-integrity, audit tooling)
 
 ## Phase 2 — Lanterns (on demand)

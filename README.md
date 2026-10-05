@@ -28,6 +28,7 @@ The Corps is a self-hosted defense system built from small, specialized local LL
 | **Hal Jordan** | Malware and download sentinel (ClamAV, YARA, hashes, pre-flight of downloaded files) |
 | **John Stewart** | Network sentinel (listeners, connections, unusual outbound traffic) |
 | **Kyle Rayner** | Privacy sentinel (permissions, leaked secrets, exposed services) |
+| **Mogo** | Privileged read-only sensor: sees what a user cannot (audit logs, protected paths), never acts |
 | **Kilowog** | Independent verifier: re-checks findings with a different model family; kills false positives |
 | **Salaak** | Scribe: findings, deduplication, reports, memory between rounds |
 | **Atrocitus** | Response: quarantine execution, after verification and human approval |

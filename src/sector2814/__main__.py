@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import sys
 from pathlib import Path
 
 from . import policy as policy_mod
@@ -80,6 +82,13 @@ def cmd_plugins(args: argparse.Namespace) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
+    if hasattr(os, "geteuid") and os.geteuid() == 0:
+        print(
+            "refusing to run as root: the Corps runs as the user, never root",
+            file=sys.stderr,
+        )
+        return 2
+
     common = argparse.ArgumentParser(add_help=False)
     common.add_argument("--repo", default=".", help="repo root (jewels live in <repo>/plugins)")
     common.add_argument("--home", default=None, help="override home for data/config")

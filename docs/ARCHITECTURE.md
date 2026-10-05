@@ -120,6 +120,19 @@ Out of scope (for now):
 - **No egress by default** — Lanterns have no network privileges except read-only inspection. The only network service is the local inference endpoint.
 - **Vault manifests** — every quarantine action writes source path, hash, reason, and finding id; restore is verifiable.
 
+## Visibility vs privilege
+
+The Corps runs as the user, so its coverage equals the user-readable surface. Some areas are invisible by design:
+
+- `/root`, `/etc/shadow`, `/etc/ssl/private`, other users' private data
+- process internals of other users (`/proc/<pid>/environ`, open files)
+- audit logs and root-only scanners' output
+- anything below the kernel surface (modules, eBPF, rootkits)
+
+To widen visibility without widening power, the design adds a privileged read-only sensor (**Mogo**): a root systemd unit or a narrowly scoped `NOPASSWD` sudoers entry limited to exact read-only commands (for example `ss -ap`, `dpkg -V`, audit report dumps). It writes sanitized JSON to a user-readable spool; the Crown consumes the reports and never sends root actions. Root serves seeing, never acting: every mutation stays user-level and human-approved. Groups such as `adm` already grant part of this visibility for logs, for free.
+
+Hard limitation, stated honestly: a kernel-level rootkit owns the machine and no user-level tool can win that fight. The answer there is offline verification (live media, an external AIDE database), not self-defense. That is out of scope for the patrol.
+
 ## Failure modes
 
 | Failure | Behavior |

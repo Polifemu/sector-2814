@@ -34,10 +34,12 @@ Stretch: put a prompt-injection shield model in the ingest path from day one.
 - [ ] systemd timer + anomaly-triggered triage
 - [ ] Token budget per round and kill switch
 - [ ] Baseline snapshot to suppress known-good noise
+- [ ] Mogo: privileged read-only sensors (narrow sudoers/systemd) feeding sanitized reports to the user-level Corps
 
 ## Phase 4 — Atrocitus (response)
 
 - [ ] Vault with manifests and one-command restore
+- [ ] Protected paths: never quarantine OS files, keys, user session config, package-owned files, the Corps' own store
 - [ ] Approval flow: token minted only by an interactive human session
 - [ ] Allowlist entries with expiry and required reason
 - [ ] Dry-run mode for every mutating action

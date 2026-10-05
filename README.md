@@ -74,6 +74,8 @@ Copy `config/book-of-oa.example.toml` to `~/.config/sector2814/book-of-oa.toml` 
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) first. This is security-sensitive software: read [SECURITY.md](SECURITY.md) before touching the Ring or the policy engine.
 
+Not sure where to start? [docs/OPEN-QUESTIONS.md](docs/OPEN-QUESTIONS.md) lists the design decisions we trust the least — an expert critique is worth more than code right now.
+
 ## Disclaimer
 
 Sector 2814 is an independent project. Agent codenames reference the Green Lantern Corps, a DC Comics property, as a fan homage. This project is not affiliated with or endorsed by DC Comics.

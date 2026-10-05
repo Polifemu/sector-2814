@@ -8,6 +8,8 @@ trt-engines/
 # local runtime state
 vault/
 findings.db
+*.db
+audit.jsonl
 *.sqlite
 *.sqlite3
 *.log

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Polifemu/sector-2814/schemas/plugin.schema.json",
+  "title": "Plugin manifest (plugin.toml)",
+  "type": "object",
+  "required": ["plugin"],
+  "properties": {
+    "plugin": {
+      "type": "object",
+      "required": ["name", "version", "kind", "entry"],
+      "properties": {
+        "name": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "version": { "type": "string" },
+        "kind": { "enum": ["detector", "lantern", "adapter", "reporter"] },
+        "entry": { "type": "string" },
+        "description": { "type": "string" },
+        "schedule": { "type": "string" },
+        "timeout": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "properties": {
+        "actions": {
+          "type": "array",
+          "items": { "enum": ["read-only", "reversible", "destructive"] }
+        }
+      }
+    },
+    "config": { "type": "object" }
+  }
+}

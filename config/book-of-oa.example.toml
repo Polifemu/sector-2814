@@ -1,0 +1,19 @@
+# Book of Oa - example policy for Sector 2814.
+# Copy to ~/.config/sector2814/book-of-oa.toml to make it active.
+# Missing book = these defaults: read-only only.
+
+[policy]
+version = 1
+escalate_at = "red"
+
+[actions]
+read_only = true
+reversible = false    # quarantine proposals only, never automatic
+destructive = false   # kill / delete always require an interactive approval token
+
+# Allowlist entries require subject, reason and expiry (see docs/BOOK-OF-OA.md):
+#
+# [allowlist]
+# [allowlist."/home/user/tools/known-good"]
+# reason = "vendor tool"
+# expires = "2026-12-31"

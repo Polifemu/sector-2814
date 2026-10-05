@@ -51,9 +51,23 @@ The Corps is a self-hosted defense system built from small, specialized local LL
 | Guardian (heavy reasoning) | TensorRT-LLM (NGC container) | maximum efficiency on Blackwell |
 | Existing GraphRAG pipeline | Ollama | independent, untouched by the Corps |
 
+## Quickstart (crown v0)
+
+Pure Python 3.11+, no dependencies. From the repo:
+
+```bash
+PYTHONPATH=src python3 -m sector2814 plugins        # list discovered jewels
+PYTHONPATH=src python3 -m sector2814 patrol         # run one round
+PYTHONPATH=src python3 -m sector2814 findings       # recent findings
+PYTHONPATH=src python3 -m sector2814 tools list     # the Ring (read-only tools)
+PYTHONPATH=src python3 -m sector2814 tools run hash_file --args '{"path": "/etc/hostname"}'
+```
+
+Copy `config/book-of-oa.example.toml` to `~/.config/sector2814/book-of-oa.toml` to activate a policy. Data goes to `~/.local/share/sector2814/` (SQLite battery + audit log). To add a jewel, see [docs/EXTENDING.md](docs/EXTENDING.md).
+
 ## Status
 
-**Design phase.** See [docs/ROADMAP.md](docs/ROADMAP.md) for the build order and [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full design.
+**Design phase, crown v0 seeded.** See [docs/ROADMAP.md](docs/ROADMAP.md) for the build order, [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full design, and [docs/EXTENDING.md](docs/EXTENDING.md) to add a jewel.
 
 ## Contributing
 

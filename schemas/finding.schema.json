@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Polifemu/sector-2814/schemas/finding.schema.json",
+  "title": "Finding",
+  "type": "object",
+  "required": ["plugin", "severity", "title"],
+  "properties": {
+    "id": { "type": "string" },
+    "round_id": { "type": "string" },
+    "ts": { "type": "string" },
+    "plugin": { "type": "string" },
+    "severity": { "enum": ["green", "yellow", "red", "black"] },
+    "title": { "type": "string", "minLength": 1 },
+    "detail": { "type": "string" },
+    "evidence": { "type": "object" },
+    "subject": { "type": "object" }
+  },
+  "additionalProperties": false
+}

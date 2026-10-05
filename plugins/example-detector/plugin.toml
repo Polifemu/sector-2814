@@ -1,0 +1,19 @@
+# Example jewel for Sector 2814.
+# A jewel is a manifest (this file) plus an executable entry point that
+# speaks JSON over stdin/stdout. Any language works.
+
+[plugin]
+name = "example-detector"
+version = "0.1.0"
+kind = "detector"
+entry = "detect.py"
+description = "Example jewel: flags world-writable files in a directory (read-only)"
+schedule = "daily"
+timeout = 30
+
+[safety]
+actions = ["read-only"]
+
+[config]
+directory = "~/Downloads"
+max_files = 500

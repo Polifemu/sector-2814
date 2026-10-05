@@ -11,6 +11,13 @@ Thanks for wanting to join the Corps. This project is security-sensitive, so the
 5. **Policy first.** New behavior goes in the Book of Oa before it goes in code.
 6. **Propose vs dispose.** Model output is advisory; validation lives in the Ring, never in a prompt.
 
+## Crown and Jewels
+
+The repo is split in two, and the halves have different rules:
+
+- **The Crown** (`src/sector2814/`): orchestration, policy engine, tool registry, audit, findings store. Security-sensitive: two reviewers, and a note on threat-model impact.
+- **The Jewels** (`plugins/`): detectors, Lantern prompts, engine adapters, reporters. Contribution-friendly: a jewel is a `plugin.toml` plus an executable that speaks JSON over stdin/stdout, in any language. Maintainers review for safety and give suggestions; they do not dictate style or scope. Spec: [docs/EXTENDING.md](docs/EXTENDING.md).
+
 ## Ways to contribute
 
 - Lantern agent definitions and prompts

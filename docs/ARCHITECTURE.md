@@ -163,3 +163,13 @@ Threat-model additions: malicious or compromised peer, Sybil, beacon spoofing, r
 | Guardian container broken | fall back to local 30B MoE; log engine degradation |
 | Policy file modified | black finding; patrol suspends mutations |
 | Budget exceeded | round stops; partial report delivered |
+
+## Formal model
+
+The round protocol is also modelled as workflow nets and machine-checked
+for soundness, 1-safety, and the approval invariant (no mutation without
+a human-minted token). See `formal/README.md` and run `formal/verify.py`.
+The net is a design artifact — the Crown remains the implementation, and
+the Central Battery audit log is the reference event log for future
+conformance checks.
+
